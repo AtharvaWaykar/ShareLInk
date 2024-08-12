@@ -13,6 +13,7 @@ struct ShareLinkApp: App {
         WindowGroup {
             ContentView()
             WelcomeView()
+            HomeView()
         }
     }
 }
