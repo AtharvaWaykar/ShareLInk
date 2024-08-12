@@ -18,8 +18,8 @@ struct Card: Identifiable {
 
 struct HomeView: View {
     @State private var receivedCards: [Card] = [
-        Card(name: "Bobqwerqwerqwerqwer", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
-        Card(name: "Bob", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
+        Card(name: "Bobqwerq", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
+        Card(name: "Bob", jobTitle: "Software Engineer", company: "TechCO", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
         Card(name: "Bob", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
         Card(name: "Bob", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
         Card(name: "Bob", jobTitle: "Software Engineer", company: "Tech", phoneNumber: "111-111-1111", email: "bob@gmail.com"),
@@ -32,7 +32,6 @@ struct HomeView: View {
                 VStack {
                     ForEach(receivedCards) { card in
                        CardView(card: card)
-                            .frame(width: 300, height: 150)
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 5)
@@ -72,6 +71,7 @@ struct CardView: View {
             Text(card.name)
                 .font(.title2)
                 .bold()
+                .frame(maxWidth: .infinity,  alignment: .center )
             
             Text(card.jobTitle)
                 .font(.subheadline)
@@ -91,8 +91,7 @@ struct CardView: View {
         .background(Color(.systemGray6))
         .cornerRadius(10)
         .shadow(radius: 5)
-        .frame(minWidth: 503,maxWidth: .infinity, maxHeight: .infinity, alignment: .center )
-        .scaledToFill()
+        
         
       
     }
