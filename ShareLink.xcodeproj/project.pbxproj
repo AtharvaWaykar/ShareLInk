@@ -13,6 +13,7 @@
 		451588AA2C67D23000BE38E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451588A92C67D23000BE38E8 /* Preview Assets.xcassets */; };
 		451588B32C67FC2400BE38E8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451588B22C67FC2400BE38E8 /* WelcomeView.swift */; };
 		45A26D7A2C69AFDC003AD966 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A26D792C69AFDC003AD966 /* HomeView.swift */; };
+		45CA293C2C6C0C400004B626 /* BluetoothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA293B2C6C0C400004B626 /* BluetoothView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		451588A92C67D23000BE38E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		451588B22C67FC2400BE38E8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		45A26D792C69AFDC003AD966 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		45CA293B2C6C0C400004B626 /* BluetoothView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				45A26D792C69AFDC003AD966 /* HomeView.swift */,
 				451588A62C67D23000BE38E8 /* Assets.xcassets */,
 				451588A82C67D23000BE38E8 /* Preview Content */,
+				45CA293B2C6C0C400004B626 /* BluetoothView.swift */,
 			);
 			path = ShareLink;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				451588A52C67D22E00BE38E8 /* ContentView.swift in Sources */,
+				45CA293C2C6C0C400004B626 /* BluetoothView.swift in Sources */,
 				45A26D7A2C69AFDC003AD966 /* HomeView.swift in Sources */,
 				451588B32C67FC2400BE38E8 /* WelcomeView.swift in Sources */,
 				451588A32C67D22E00BE38E8 /* ShareLinkApp.swift in Sources */,
