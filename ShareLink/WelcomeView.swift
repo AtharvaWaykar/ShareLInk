@@ -14,29 +14,29 @@ struct WelcomeView: View {
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     var body: some View {
-        VStack {
-            Text("Welcome to ShareLink")
-                .font(.title)
-                .padding(.top)
-           
-            
-            Button("Set Up") {
+        NavigationStack{
+            VStack {
+                Text("Welcome to ShareLink")
+                    .font(.title)
+                    .padding(.top)
+             
+                NavigationLink(destination: ContentView()) {
+                    
+                    Text("Click")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
                 
-                print("Name: \(name)")
-                print("Job Title: \(jobTitle)")
-                print("Company: \(company)")
-                print("Phone Number: \(phoneNumber)")
-                print("Email: \(email)")
+                
+                
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            
         }
     }
 }
 
 #Preview {
+
     WelcomeView()
 }
