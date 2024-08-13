@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 struct Card: Identifiable {
     var id = UUID()
@@ -56,6 +57,7 @@ struct HomeView: View {
                     .padding()
                     .background(Color.blue)
                     .cornerRadius(10)
+                    
             }
             .padding(.horizontal)
         }
@@ -96,6 +98,41 @@ struct CardView: View {
       
     }
 }
+
+
+class BluetoothManager: NSObject, CBPeripheralManagerDelegate, CBCentralManagerDelegate {
+    var peripheralManager: CBPeripheralManager?
+    var centralManager: CBCentralManager?
+    
+    override init() {
+        super.init()
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+    }
+
+    func startAdvertising() {
+        let advertisementData: [String: Any] = [
+            CBAdvertisementDataLocalNameKey: "BusinessCard",
+            
+        ]
+        peripheralManager?.startAdvertising(advertisementData)
+    }
+
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == .poweredOn {
+            centralManager?.scanForPeripherals(withServices: nil, options: nil)
+        }
+    }
+
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOn {
+            startAdvertising()
+        }
+    }
+
+   
+}
+
 
 #Preview {
     HomeView()
