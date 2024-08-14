@@ -10,27 +10,25 @@ import CoreBluetooth
 struct BluetoothView: View {
     @StateObject private var bluetoothManager = BluetoothManager()
     var body: some View {
+        
         NavigationStack{
             VStack {
+               
                 Text("Select a Device")
                     .font(.title)
                     .padding()
                 ScrollView {
                     VStack {
-                       
-
-                        List(bluetoothManager.discoveredDevices, id: \.identifier) { peripheral in
-                            Text(peripheral.name ?? "Unknown Device")
-                            
+                        
+                        NavigationStack{
+                            List(bluetoothManager.discoveredDevices, id: \.identifier) {peripheral
+                                Text(peripheral.name)
+                          
                         }
+                        .navigationTitle("Devices")
                     }
-                    .onAppear {
-                        bluetoothManager.startScanning()
+                        
                     }
-                    .onDisappear {
-                        bluetoothManager.stopScanning()
-                    }
-                    
                     .padding()
                 }
             
@@ -51,21 +49,21 @@ struct BluetoothView: View {
             }
             .padding(.top)
         }
+                        
     }
 
 }
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     @Published var discoveredDevices: [CBPeripheral] = []
     private var centralManager: CBCentralManager?
+    @Published var peripheralNames: [String] = []
 
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
-    func startScanning() {
-        centralManager?.scanForPeripherals(withServices: nil, options: nil)
-    }
+
 
     func stopScanning() {
         centralManager?.stopScan()
@@ -73,16 +71,20 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            startScanning()
-        } else {
-            print("Bluetooth is not available.")
-        }
+                 self.centralManager?.scanForPeripherals(withServices: nil)
+             }
+            print("succes")
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         if !discoveredDevices.contains(where: { $0.identifier == peripheral.identifier }) {
-            discoveredDevices.append(peripheral)
-        }
+                   discoveredDevices.append(peripheral)
+               }
+//        if !discoveredDevices.contains(peripheral) {
+//            self.discoveredDevices.append(peripheral)
+//            self.peripheralNames.append(peripheral.name ?? "Unnamed Device")
+//            //print(peripheral.name)
+    //    }
     }
 }
 
