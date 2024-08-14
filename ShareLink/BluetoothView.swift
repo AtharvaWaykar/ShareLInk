@@ -19,18 +19,22 @@ struct BluetoothView: View {
                     .padding()
                 ScrollView {
                     VStack {
-                        
                         NavigationStack{
-                            List(bluetoothManager.discoveredDevices, id: \.identifier) {peripheral
-                                Text(peripheral.name)
-                          
+                            ForEach(bluetoothManager.peripheralNames, id: \.self) { name in
+                                Text(name)
+                                    .padding()
+                                    .font(.body)
+                            }
                         }
                         .navigationTitle("Devices")
-                    }
-                        
+                   
                     }
                     .padding()
-                }
+
+                            .onDisappear {
+                                bluetoothManager.stopScanning()
+                            }
+              }
             
                 Spacer()
             
@@ -64,7 +68,13 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     }
 
 
-
+    func startScanning() {
+          if centralManager?.state == .poweredOn {
+              centralManager?.scanForPeripherals(withServices: nil, options: nil)
+          } else {
+              print("Bluetooth is not powered on. Cannot start scanning.")
+          }
+      }
     func stopScanning() {
         centralManager?.stopScan()
     }
@@ -78,13 +88,14 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         if !discoveredDevices.contains(where: { $0.identifier == peripheral.identifier }) {
-                   discoveredDevices.append(peripheral)
+                discoveredDevices.append(peripheral)
+     
                }
-//        if !discoveredDevices.contains(peripheral) {
-//            self.discoveredDevices.append(peripheral)
-//            self.peripheralNames.append(peripheral.name ?? "Unnamed Device")
-//            //print(peripheral.name)
-    //    }
+        if let peripheralName = peripheral.name, !peripheralNames.contains(peripheralName) {
+              peripheralNames.append(peripheralName)
+             
+          }
+
     }
 }
 
