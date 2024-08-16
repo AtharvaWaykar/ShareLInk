@@ -19,6 +19,7 @@ struct BluetoothView: View {
                     .padding()
                 ScrollView {
                     VStack {
+                      
                         NavigationStack{
                             ForEach(bluetoothManager.peripheralNames, id: \.self) { name in
                                 Text(name)
@@ -66,6 +67,13 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
+    func startAdvertising() {
+          let advertisementData: [String: Any] = [
+              CBAdvertisementDataLocalNameKey: "BusinessCard",
+              // Add more data as needed
+          ]
+          peripheralManager?.startAdvertising(advertisementData)
+      }
 
 
     func startScanning() {
