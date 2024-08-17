@@ -293,6 +293,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "This app requires Bluetooth to detect and connect with nearby devices for sharing business cards";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app requires Bluetooth to detect and connect with nearby devices for sharing business cards";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Needed to share card";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -326,6 +327,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "This app requires Bluetooth to detect and connect with nearby devices for sharing business cards";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app requires Bluetooth to detect and connect with nearby devices for sharing business cards";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Needed to share card";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -21,6 +21,7 @@ struct BluetoothView: View {
                     VStack {
                       
                         NavigationStack{
+                            
                             ForEach(bluetoothManager.peripheralNames, id: \.self) { name in
                                 Text(name)
                                     .padding()
@@ -31,6 +32,9 @@ struct BluetoothView: View {
                    
                     }
                     .padding()
+                    .onAppear(){
+                        bluetoothManager.startAdvertising()
+                    }
 
                             .onDisappear {
                                 bluetoothManager.stopScanning()
@@ -66,13 +70,15 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        
     }
     func startAdvertising() {
           let advertisementData: [String: Any] = [
               CBAdvertisementDataLocalNameKey: "BusinessCard",
               // Add more data as needed
           ]
-          peripheralManager?.startAdvertising(advertisementData)
+         
       }
 
 
