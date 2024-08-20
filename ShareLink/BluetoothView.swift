@@ -1,5 +1,5 @@
 import SwiftUI
-
+import CoreNFC
 
 struct BluetoothView: View {
    
@@ -8,22 +8,13 @@ struct BluetoothView: View {
         NavigationStack{
             VStack {
                
-                Text("Select a Device")
+                Text("Hold Near Phone")
                     .font(.title)
                     .padding()
                 ScrollView {
                     VStack {
                       
-                        NavigationStack{
-                            
-                            ForEach(bluetoothManager.peripheralNames, id: \.self) { name in
-                                Text(name)
-                                    .padding()
-                                    .font(.body)
-                            }
-                        }
-                        .navigationTitle("Devices")
-                   
+          
                     }
                     .padding()
                    
@@ -50,3 +41,40 @@ struct BluetoothView: View {
     }
 
 }
+
+
+
+class NFCWriterViewController: UIViewController, NFCNDEFReaderSessionDelegate {
+    var nfcSession: NFCNDEFReaderSession?
+
+    func startWriting() {
+        guard NFCNDEFReaderSession.readingAvailable else {
+            print("NFC is not available on this device")
+            return
+        }
+        nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+        nfcSession?.alertMessage = "Hold your iPhone near another NFC-enabled device."
+        nfcSession?.begin()
+    }
+
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        // This function can be used to handle detected NDEFs if necessary
+    }
+
+    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+        print("NFC Session Invalidated: \(error.localizedDescription)")
+    }
+
+    func writeNFCData() {
+        let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: "Business Card Data", locale: Locale.current)!
+        let message = NFCNDEFMessage(records: [payload])
+        nfcSession?.writeNDEF(message) { error in
+            if let error = error {
+                print("Failed to write NFC data: \(error.localizedDescription)")
+            } else {
+                print("Successfully wrote NFC data.")
+            }
+        }
+    }
+}
+
