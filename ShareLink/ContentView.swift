@@ -15,7 +15,7 @@ struct ContentView: View {
     @State private var email: String = ""
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             VStack {
                 Text("ShareLink")
                     .font(.title)
@@ -45,24 +45,22 @@ struct ContentView: View {
                         .padding(.bottom)
                 }
                 .padding(.horizontal)
-                NavigationLink(destination: HomeView()) {
+                
+                NavigationLink(destination: HomeView(businessCard: BusinessCard(name: name, jobTitle: jobTitle, company: company, phoneNumber: phoneNumber, email: email))) {
                     Text("Finish")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
                 
                 Spacer()
             }
         }
         .padding()
-        
     }
 }
-    
 
 #Preview {
     ContentView()
 }
-
