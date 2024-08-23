@@ -8,10 +8,10 @@ struct BluetoothView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(multipeerManager.receivedMessages, id: \.self) { message in
-                    Text(message)
-                }
-                
+//                List(multipeerManager.receivedMessages, id: \.self) { message in
+//                    Text(message)
+//                }
+//                
                 HStack {
                     TextField("Enter message", text: $messageToSend)
                         .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -46,13 +46,14 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 
-                NavigationLink(destination: HomeView(businessCard: BusinessCard(name: name, jobTitle: jobTitle, company: company, phoneNumber: phoneNumber, email: email))) {
-                    Text("Finish")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+//                NavigationLink(destination: HomeView(businessCard: BusinessCard(name: name, jobTitle: jobTitle, company: company, phoneNumber: phoneNumber, email: email)))
+//                {
+//                    Text("Finish")
+//                        .padding()
+//                        .background(Color.blue)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+//                }
                 
                 Spacer()
             }
